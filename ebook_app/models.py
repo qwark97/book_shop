@@ -6,3 +6,14 @@ class EBook(models.Model):
     price = models.FloatField()
     available = models.BooleanField()
     cover = models.FilePathField()
+
+    def __str__(self):
+        return self.name
+
+    def attributes(self):
+        return {
+            'name': str,
+            'price': float,
+            'available': bool,
+            'cover': str,
+        }
