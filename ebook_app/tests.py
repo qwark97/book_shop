@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.test import TestCase
 from ebook_app_controller.ebook import EBookController, EBook
 
