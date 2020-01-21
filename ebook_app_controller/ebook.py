@@ -11,6 +11,7 @@ class EBookController:
             cover
         )
         ebook.save()
+        return ebook.id
 
     def read(self, _id):
         ebook = EBook.objects.get(id=_id)

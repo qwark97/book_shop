@@ -8,7 +8,11 @@ class EBook(models.Model):
     cover = models.FilePathField()
 
     def __str__(self):
-        return self.name
+        return 'Name: "%s" costs %d and is %savailable' % (
+            self.name,
+            self.price,
+            '' if self.available else 'not '
+        )
 
     def attributes(self):
         return {
