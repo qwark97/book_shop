@@ -2,6 +2,7 @@ from django.db import models
 
 
 class EBook(models.Model):
+    id = models.AutoField()
     name = models.CharField(max_length=50)
     price = models.FloatField()
     available = models.BooleanField()

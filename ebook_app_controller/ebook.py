@@ -3,8 +3,9 @@ from ebook_app.models import EBook
 
 class EBookController:
 
-    def create(self, name, price, available=False, cover=''):
+    def create(self, id, name, price, available=False, cover=''):
         ebook = EBook(
+            id,
             name,
             price,
             available,
