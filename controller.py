@@ -1,5 +1,4 @@
-from ebook_app.models import EBook
-
+from models import EBook
 
 class EBookController:
 
@@ -14,12 +13,13 @@ class EBookController:
         ebook.save()
         return ebook.id
 
-    def read(self, _id):
-        ebook = EBook.objects.get(id=_id)
+    def read(self, id):
+        ebook = EBook.objects.get(id, None)
         return ebook
 
     def update(self, ebook, **kwargs):
-        white_list = ebook.attributes()
+        print(dir(EBook))
+        white_list = EBook.attributes()
         new_kwargs = {}
         for attr, val in kwargs.items():
             if attr in white_list:

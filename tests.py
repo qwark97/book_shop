@@ -1,16 +1,13 @@
-from django.conf import settings
-from django.test import TestCase
-from ebook_app_controller.ebook import EBookController, EBook
+from controller import EBookController
+from models import EBook
 
-
-# Create your tests here.
-def run():
+def test_run():
     ctrl = EBookController()
 
     ebook_id = ctrl.create(
         'test1', 21.37
     )
-    print(EBook.objects.all())
+    print(EBook.all())
 
     ebook = ctrl.read(ebook_id)
 
@@ -22,7 +19,7 @@ def run():
 
     ctrl.delete(ebook)
 
-    print(EBook.objects.all())
+    print(EBook.all())
 
 
 if __name__ == '__main__':
