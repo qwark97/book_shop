@@ -21,6 +21,10 @@ class EBook:
         if DB.objects.get('EBook', {}):
             return DB.objects.get('EBook', {}).get(_id, None)
 
+    @staticmethod
+    def get_all():
+        return DB.objects.get('EBOOK', {})
+
     def update_state(self):
         self.insert()
 
