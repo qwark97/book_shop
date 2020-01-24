@@ -4,15 +4,14 @@ from models.ebook import EBook
 class EBookController:
 
     @staticmethod
-    def create(name, price, available=False, cover='', save=True):
+    def create(name, price, available=False, cover=''):
         ebook = EBook(
             name,
             price,
             available,
             cover
         )
-        if save:
-            ebook.insert()
+        ebook.insert()
         return ebook
 
     @staticmethod
