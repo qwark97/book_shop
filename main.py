@@ -5,9 +5,11 @@ from tests import test_run
 app = Flask(__name__)
 db = DB()
 
+
 @app.route('/')
 def home():
     return 'Let\' begin with Flask'
+
 
 @app.route('/test')
 def test_route():
@@ -15,4 +17,4 @@ def test_route():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 8080)
+    app.run('0.0.0.0', 8080, debug=True)
