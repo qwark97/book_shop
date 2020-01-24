@@ -17,6 +17,9 @@ class EBookController:
 
     @staticmethod
     def read(_id):
+        """Accepts also whole EBook object"""
+        if type(_id) is EBook:
+            return EBook.get(_id._id)
         return EBook.get(_id)
 
     @staticmethod
