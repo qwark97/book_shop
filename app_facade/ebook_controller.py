@@ -25,6 +25,7 @@ class EBookController:
     @staticmethod
     def update(_id, **kwargs):
         ebook = EBookController.read(_id)
+        _id = ebook._id
         for key, val in kwargs.items():
             if ebook.__dict__.get(key, None) is None: continue
             ebook.__setattr__(key, val)
