@@ -26,8 +26,10 @@ class EBookController:
             if ebook.__dict__.get(key, None) is None: continue
             ebook.__setattr__(key, val)
         ebook.update_state()
+        return ebook
 
     @staticmethod
     def delete(_id):
         ebook = EBookController.read(_id)
         ebook.remove()
+        return True
