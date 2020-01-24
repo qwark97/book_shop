@@ -13,7 +13,7 @@ def home():
 
 @app.route('/test')
 def test_route():
-    test_run()
+    return test_run()
 
 
 if __name__ == "__main__":
