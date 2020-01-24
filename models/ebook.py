@@ -12,7 +12,7 @@ class EBook:
         self.cover = cover
 
     def __str__(self):
-        return f'Book: "{self.name}" with id: {self._id}'
+        return f'Book: "{self.name}" with id: {self._id}. Availability: {self.available}'
 
     def insert(self):
         if not DB.objects.get('EBook', None):
