@@ -11,6 +11,9 @@ class EBook:
         self.available = available
         self.cover = cover
 
+    def __str__(self):
+        return f'Book: "{self.name}" with id: {self._id}'
+
     def insert(self):
         if not DB.objects.get('EBook', None):
             DB.objects['EBook'] = {}
