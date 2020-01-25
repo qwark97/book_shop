@@ -73,6 +73,10 @@ class EBookController:
             raise Exception("You cannot have negative amount of books!")
         EBookController.update(id, quantity=new_amount)
 
+    @staticmethod
+    def get_all():
+        return EBook.get_all()
+
     def _book_already_exists(self, name, price, cover):
         book_hash = md5(f'{name}{price}{cover}')
         return any(hash(db_book) == book_hash for db_book in EBook.get_all().items())
