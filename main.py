@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from in_memory import DB
 from tests import test_run
 
@@ -9,6 +9,12 @@ db = DB()
 @app.route('/')
 def home():
     return 'Let\' begin with Flask'
+
+
+@app.route('/api/add-to-cart')
+def add_to_cart():
+    kwargs = {}
+    return render_template('addToCart.html', **kwargs)
 
 
 @app.route('/test')
