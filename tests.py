@@ -1,26 +1,28 @@
-from controller import EBookController
-from models import EBook
+from app_facade.ebook_controller import EBookController
+from models.ebook import EBook
+
 
 def test_run():
-    ctrl = EBookController()
 
-    ebook_id = ctrl.create(
+    created_ebook = EBookController.create(
         'test1', 21.37
     )
-    print(EBook.all())
+    print(EBook.get_all())
 
-    ebook = ctrl.read(ebook_id)
-
-    print(str(ebook))
-
-    ctrl.update(ebook, available=True)
+    ebook = EBookController.read(created_ebook.id)
 
     print(str(ebook))
 
-    ctrl.delete(ebook)
+    EBookController.update(ebook, availability=False)
 
-    print(EBook.all())
+    print(str(ebook))
+
+    EBookController.delete(ebook)
+
+    print(EBook.get_all())
+
+    return "Everything works fine!"
 
 
 if __name__ == '__main__':
-    run()
+    test_run()
