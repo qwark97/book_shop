@@ -5,12 +5,13 @@ from hashlib import md5
 
 class EBook:
 
-    def __init__(self, name, price, quantity, cover):
+    def __init__(self, name, price, quantity, cover, availability):
         self.id = uuid.uuid4
         self.name = name
         self.price = price
         self.quantity = quantity
         self.cover = cover
+        self.availability = availability
         self._insert()
 
     def __str__(self):
@@ -39,7 +40,7 @@ class EBook:
 
     @property
     def available(self):
-        return bool(self.get_all())
+        return bool(self.get_all()) and self.availability
 
     def update_state(self):
         self._insert()

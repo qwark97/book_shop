@@ -23,7 +23,7 @@ class Cart:
         return DB.objects.get('Cart', {})
 
     def update_state(self):
-        self._insert()
+        pass
 
     def remove(self):
         try:

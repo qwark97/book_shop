@@ -4,12 +4,13 @@ from models.ebook import EBook
 class EBookController:
 
     @staticmethod
-    def create(name, price, quantity=0, cover=''):
+    def create(name, price, quantity=0, cover='', availability=True):
         ebook = EBook(
             name,
             price,
             quantity,
-            cover
+            cover,
+            availability
         )
         return ebook
 
