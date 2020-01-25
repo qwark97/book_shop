@@ -1,2 +1,4 @@
 - przenieść wszystkie elementy walidacji danych wejściowych z modeli do fasady
 - dodać customowe exceptiony
+
+- session w połączeniu z fingerprintem przeglądarki
