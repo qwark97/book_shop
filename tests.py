@@ -9,11 +9,11 @@ def test_run():
     )
     print(EBook.get_all())
 
-    ebook = EBookController.read(created_ebook._id)
+    ebook = EBookController.read(created_ebook.id)
 
     print(str(ebook))
 
-    EBookController.update(ebook, available=True)
+    EBookController.update(ebook, availability=False)
 
     print(str(ebook))
 
