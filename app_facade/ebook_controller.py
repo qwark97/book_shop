@@ -1,5 +1,4 @@
 from models.ebook import EBook
-from hashlib import md5
 
 
 class EBookController:
@@ -12,7 +11,7 @@ class EBookController:
         cover = str(cover)
         availability = bool(availability)
 
-        if EBookController._book_already_exists:
+        if EBookController._book_already_exists(name, price, cover):
             raise Exception("Such book already exists! Try to increase its quantity")
         ebook = EBook(
             name,
@@ -77,6 +76,7 @@ class EBookController:
     def get_all():
         return EBook.get_all()
 
-    def _book_already_exists(self, name, price, cover):
-        book_hash = md5(f'{name}{price}{cover}')
+    @staticmethod
+    def _book_already_exists(name, price, cover):
+        book_hash = hash(f'{name}{price}{cover}')
         return any(hash(db_book) == book_hash for db_book in EBook.get_all().items())
