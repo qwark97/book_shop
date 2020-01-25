@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from in_memory import DB
 from tests import test_run
 
@@ -14,7 +14,13 @@ def home():
 @app.route('/api/add-to-cart')
 def add_to_cart():
     kwargs = {}
-    return render_template('addToCart.html', **kwargs)
+    return redirect('books_shelf')
+
+
+@app.route('/books')
+def books_shelf():
+    kwargs = {}
+    return render_template('booksShelf.html', **kwargs)
 
 
 @app.route('/test')
