@@ -5,7 +5,7 @@ class Cart:
 
     def __init__(self, session_id):
         self.id = session_id
-        self.products_list = []
+        self.products_list = {}
         self._insert()
 
     def _insert(self):

@@ -18,11 +18,7 @@ class EBook:
         return f'Book: "{self.name}" with id: {self.id}. Availability: {self.available}'
 
     def __hash__(self):
-        return md5(f'''
-        {self.name}
-        {self.price}
-        {self.cover}
-        ''')
+        return md5(f'{self.name}{self.price}{self.cover}')
 
     def _insert(self):
         if not DB.objects.get('EBook', None):
@@ -46,7 +42,4 @@ class EBook:
         self._insert()
 
     def remove(self):
-        try:
-            del DB.objects['EBook'][self.id]
-        except (KeyError, AttributeError):
-            raise Exception("There is no such object in DB")
+        del DB.objects['EBook'][self.id]
