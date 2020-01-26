@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect
 from in_memory import DB
 from tests import test_run
 from app_facade.ebook_controller import EBookController
+from helpers import get_all_books
 
 app = Flask(__name__)
 db = DB()
@@ -11,10 +12,14 @@ db = DB()
 def home():
     return 'Let\' begin with Flask'
 
-@app.route('/test-books')
-def books():
-    books = [str(book) for book in EBookController.get_all().values()]
-    return str(books)
+
+@app.route('/add-test-books')
+def add_test_books():
+    book_list = ['Three Body Problem', 'The Dark Forest', 'The End of Death']
+    for book in book_list:
+        EBookController.create(book, 80, 5)
+    return "Added"
+
 
 @app.route('/api/add-to-cart')
 def add_to_cart():
@@ -24,8 +29,7 @@ def add_to_cart():
 
 @app.route('/books')
 def books_shelf():
-    kwargs = {}
-    return render_template('booksShelf.html', **kwargs)
+    return render_template('booksShelf.jinja', data=get_all_books()['books'])
 
 
 @app.route('/test')
