@@ -1,1 +1,7 @@
-- session w połączeniu z fingerprintem przeglądarki
+- implementacja session połączonego z fingerpintem przeglądarki
+- stworzenie widoków:
+    - wszystkie książki z opcją dodawania (jakiś button)
+    - widok koszyka, gdzie można usuwać rzeczy z koszyka oraz przejść do płatności
+    - implementacja przelewów24
+- enpointy z prefixem "/api", służące do trigerowania jakichś metod fasady (np. dodanie do koszyka) 
+- testy
