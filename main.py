@@ -10,7 +10,7 @@ db = DB()
 
 @app.route('/')
 def home():
-    return 'Let\' begin with Flask'
+    return render_template('index.jinja')
 
 
 @app.route('/add-test-books')

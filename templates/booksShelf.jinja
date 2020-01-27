@@ -1,5 +1,8 @@
-{% block title %} All books {% endblock %}
+{% extends "index.jinja" %}
 
+{% block title %}All books{% endblock %}
+
+{% block main %}
 <div>
     <ul>
     {% for item in data %}
@@ -10,3 +13,4 @@
     {% endfor %}
     </ul>
 </div>
+{% endblock %}
