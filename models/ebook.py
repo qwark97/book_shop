@@ -1,12 +1,11 @@
 import uuid
 from in_memory import DB
-from hashlib import md5
 
 
 class EBook:
 
     def __init__(self, name, price, quantity, cover, availability):
-        self.id = uuid.uuid4
+        self.id = str(uuid.uuid4())
         self.name = name
         self.price = price
         self.quantity = quantity
@@ -18,11 +17,7 @@ class EBook:
         return f'Book: "{self.name}" with id: {self.id}. Availability: {self.available}'
 
     def __hash__(self):
-        return md5(f'''
-        {self.name}
-        {self.price}
-        {self.cover}
-        ''')
+        return hash(f'{self.name}{self.price}{self.cover}')
 
     def _insert(self):
         if not DB.objects.get('EBook', None):
@@ -46,7 +41,4 @@ class EBook:
         self._insert()
 
     def remove(self):
-        try:
-            del DB.objects['EBook'][self.id]
-        except (KeyError, AttributeError):
-            raise Exception("There is no such object in DB")
+        del DB.objects['EBook'][self.id]

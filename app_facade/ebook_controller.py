@@ -5,6 +5,14 @@ class EBookController:
 
     @staticmethod
     def create(name, price, quantity=0, cover='', availability=True):
+        name = str(name)
+        price = float(price)
+        quantity = max(0, int(quantity))
+        cover = str(cover)
+        availability = bool(availability)
+
+        if EBookController._book_already_exists(name, price, cover):
+            raise Exception("Such book already exists! Try to increase its quantity")
         ebook = EBook(
             name,
             price,
@@ -16,18 +24,19 @@ class EBookController:
 
     @staticmethod
     def read(id):
-        """Accepts also whole EBook object"""
+        """Accepts whole EBook's id or whole EBook object"""
         if type(id) is EBook:
-            return EBook.get(id.id)
-        return EBook.get(id)
+            ebook = EBook.get(id.id)
+        else:
+            ebook = EBook.get(id)
+
+        if not ebook:
+            raise Exception("There is no such ebook")
+        return ebook
 
     @staticmethod
     def update(_id, **kwargs):
         ebook = EBookController.read(_id)
-        try:
-            id = ebook.id
-        except AttributeError:
-            raise Exception("There is no such ebook")
         for key, val in kwargs.items():
             if ebook.__dict__.get(key, None) is None: continue
             ebook.__setattr__(key, val)
@@ -37,22 +46,37 @@ class EBookController:
     @staticmethod
     def delete(_id):
         ebook = EBookController.read(_id)
-        ebook.remove()
+        ebook.remove()  # co jeśli zostanie usunięta książka, która jest już w jakimś koszyku?
         return True
 
     @staticmethod
     def increase_quantity(id, num=1):
         ebook = EBookController.read(id)
-        if not ebook: raise Exception("There is no such ebook")
         current_quantity = ebook.quantity
+        try:
+            num = int(num)
+        except ValueError:
+            raise Exception("You must use number to increase quantity")
         EBookController.update(id, quantity=current_quantity + num)
 
     @staticmethod
     def decrease_quantity(id, num=1):
         ebook = EBookController.read(id)
-        if not ebook: raise Exception("There is no such ebook")
         current_quantity = ebook.quantity
+        try:
+            num = int(num)
+        except ValueError:
+            raise Exception("You must use number to decrease quantity")
         new_amount = current_quantity - num
         if new_amount < 0:
             raise Exception("You cannot have negative amount of books!")
         EBookController.update(id, quantity=new_amount)
+
+    @staticmethod
+    def get_all():
+        return EBook.get_all()
+
+    @staticmethod
+    def _book_already_exists(name, price, cover):
+        book_hash = hash(f'{name}{price}{cover}')
+        return any(hash(db_book) == book_hash for db_book in EBook.get_all().items())
