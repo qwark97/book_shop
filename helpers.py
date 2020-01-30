@@ -7,4 +7,4 @@ def serialize(i, n, av):
 
 def get_all_books():
     all_books = [serialize(book.id, book.name, book.availability) for book in EBookController.get_all().values()]
-    return {"books": all_books}
+    return all_books

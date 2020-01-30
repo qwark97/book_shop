@@ -10,7 +10,7 @@ db = DB()
 
 @app.route('/')
 def home():
-    return render_template('index.jinja')
+    return render_template('index.html')
 
 
 @app.route('/add-test-books')
@@ -29,7 +29,8 @@ def add_to_cart():
 
 @app.route('/books')
 def books_shelf():
-    return render_template('booksShelf.jinja', data=get_all_books()['books'])
+    all_books = get_all_books()
+    return render_template('booksShelf.html', data=all_books)
 
 
 @app.route('/test')
