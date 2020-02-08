@@ -4,7 +4,7 @@ from models.ebook import EBook
 class EBookController:
 
     @staticmethod
-    def create(name, price, quantity=0, cover='', availability=True):
+    def create(name, price, quantity=0, cover='noCover.jpg', availability=True):
         name = str(name)
         price = float(price)
         quantity = max(0, int(quantity))

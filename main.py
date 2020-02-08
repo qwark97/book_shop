@@ -4,7 +4,7 @@ from tests import test_run
 from app_facade.ebook_controller import EBookController
 from helpers import get_all_books
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static',)
 db = DB()
 
 
@@ -27,7 +27,7 @@ def add_to_cart():
     return redirect('books_shelf')
 
 
-@app.route('/books')
+@app.route('/home')
 def books_shelf():
     all_books = get_all_books()
     return render_template('booksShelf.html', data=all_books)
