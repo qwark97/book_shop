@@ -1,0 +1,38 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .display-2, header .display-2:hover {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    margin-top: 25px;
+}
+
+.cart-icon {
+    padding-top: 35px
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-dimmed {
+    opacity: 0.3;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-img-top {
+    height: 350px;
+}

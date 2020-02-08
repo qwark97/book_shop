@@ -15,9 +15,11 @@ def home():
 
 @app.route('/add-test-books')
 def add_test_books():
-    book_list = ['Three Body Problem', 'The Dark Forest', 'The End of Death']
+    book_list = ['The Dark Forest', 'The End of Death']
     for book in book_list:
         EBookController.create(book, 80, 5)
+    EBookController.create('Three Body Problem', 120, 5, 'three_body.jpg')
+    EBookController.create('Dune', 100, 0, 'dune.jpg', False)
     return "Added"
 
 
@@ -27,11 +29,14 @@ def add_to_cart():
     return redirect('books_shelf')
 
 
-@app.route('/books')
+@app.route('/home')
 def books_shelf():
     all_books = get_all_books()
     return render_template('booksShelf.html', data=all_books)
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
 
 @app.route('/test')
 def test_route():

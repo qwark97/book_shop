@@ -3,12 +3,33 @@
 {% block title %}All books{% endblock %}
 
 {% block main %}
-<div>
-    <ul>
+<div class="container">
+    <ul class="row">
     {% for item in data %}
-        <li>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.available }}</p>
+        {% if item.cover != 'noCover.jpg' %}
+            {% set img = item.cover %}
+        {% else %}
+            {% set img = 'noCover.jpg' %}
+        {% endif %}
+
+        {% if not item.available %}
+            {% set statusModifier = 'card-dimmed' %}
+        {% endif %}
+
+        <li class="col-3 card {{ statusModifier }}">
+        <img src="{{ url_for('static', filename=img) }}" class="card-img-top" alt="book_cover">
+          <div class="card-body">
+            <h5 class="card-title">
+                {{ item.name }}
+            </h5>
+            <p class="card-text">
+                Price: ${{ item.price }}
+                Stock: {{ item.quantity }}
+            </p>
+            <button href="#" class="btn btn-primary">
+                Add to cart
+            </button>
+          </div>
         </li>
     {% endfor %}
     </ul>

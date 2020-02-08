@@ -5,3 +5,14 @@
     - implementacja przelewów24
 - enpointy z prefixem "/api", służące do trigerowania jakichś metod fasady (np. dodanie do koszyka) 
 - testy
+
+ebook-shop.com/
+(ekran logowania)
+(login, zapisanie do sesji)
+ebook-shop.com/home
+(lista książek)
+(dodawanie książek do sesji)
+ebook-shop.com/cart
+(widok koszyka, usuwanie książek z koszyka, przejście do zapłaty)
+ebook-shop.com/payment
+(przelewy24)
