@@ -14,7 +14,6 @@
 
         {% if not item.available %}
             {% set statusModifier = 'card-dimmed' %}
-            {% set buttonModifier = 'true' %}
         {% endif %}
 
         <li class="col-3 card {{ statusModifier }}">
@@ -24,9 +23,10 @@
                 {{ item.name }}
             </h5>
             <p class="card-text">
+                Price: ${{ item.price }}
                 Stock: {{ item.quantity }}
             </p>
-            <button href="#" class="btn btn-primary" disabled="{{ buttonModifier }}">
+            <button href="#" class="btn btn-primary">
                 Add to cart
             </button>
           </div>
