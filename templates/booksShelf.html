@@ -12,17 +12,21 @@
             {% set img = 'noCover.jpg' %}
         {% endif %}
 
-        <li class="col-3 card">
+        {% if not item.available %}
+            {% set statusModifier = 'card-dimmed' %}
+            {% set buttonModifier = 'true' %}
+        {% endif %}
+
+        <li class="col-3 card {{ statusModifier }}">
         <img src="{{ url_for('static', filename=img) }}" class="card-img-top" alt="book_cover">
           <div class="card-body">
             <h5 class="card-title">
                 {{ item.name }}
             </h5>
             <p class="card-text">
-                {{ item.available }}
-                {{ item.quantity }}
+                Stock: {{ item.quantity }}
             </p>
-            <button href="#" class="btn btn-primary">
+            <button href="#" class="btn btn-primary" disabled="{{ buttonModifier }}">
                 Add to cart
             </button>
           </div>

@@ -15,9 +15,11 @@ def home():
 
 @app.route('/add-test-books')
 def add_test_books():
-    book_list = ['Three Body Problem', 'The Dark Forest', 'The End of Death']
+    book_list = ['The Dark Forest', 'The End of Death']
     for book in book_list:
         EBookController.create(book, 80, 5)
+    EBookController.create('Three Body Problem', 120, 5, 'three_body.jpg')
+    EBookController.create('Dune', 100, 0, 'dune.jpg', False)
     return "Added"
 
 
