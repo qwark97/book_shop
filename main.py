@@ -4,7 +4,7 @@ from tests import test_run
 from app_facade.ebook_controller import EBookController
 from helpers import get_all_books
 
-app = Flask(__name__, static_folder='static',)
+app = Flask(__name__)
 db = DB()
 
 
