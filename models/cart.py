@@ -6,7 +6,7 @@ from uuid import uuid4
 class Cart:
 
     def __init__(self):
-        self.id = uuid4()
+        self.id = str(uuid4())
         self.products_list = {}
         self._initiate()
 
