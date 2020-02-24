@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, session
 from in_memory import DB
 from tests import test_run
 from app_facade.ebook_controller import EBookController
+from app_facade.cart_controller import CartController
 from helpers import get_all_books
 
 app = Flask(__name__)
