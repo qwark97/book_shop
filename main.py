@@ -1,4 +1,6 @@
-from flask import Flask, render_template, redirect
+import os
+
+from flask import Flask, render_template, redirect, session
 from in_memory import DB
 from tests import test_run
 from app_facade.ebook_controller import EBookController
@@ -6,6 +8,7 @@ from helpers import get_all_books
 
 app = Flask(__name__)
 db = DB()
+app.secret_key = os.urandom(10)
 
 
 @app.route('/')
@@ -34,9 +37,11 @@ def books_shelf():
     all_books = get_all_books()
     return render_template('booksShelf.html', data=all_books)
 
+
 @app.route('/cart')
 def cart():
     return render_template('cart.html')
+
 
 @app.route('/test')
 def test_route():
