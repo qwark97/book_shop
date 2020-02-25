@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, make_response, jsonify, redirect
+from flask import Flask, render_template, request, make_response, jsonify, redirect, url_for
 
 from app_facade.cart_controller import CartController
 from in_memory import DB
@@ -35,7 +35,6 @@ def add_test_books():
 
 @app.route('/api/add-to-cart', methods=["POST", "GET"])
 def add_to_cart():
-    
     if request.method == 'GET': return redirect('/home')
     cart_instance = CartController.get_cart()
     ebook_id = request.get_json()
@@ -46,9 +45,6 @@ def add_to_cart():
         return make_response(jsonify({"message": e}), 404)
 
 
-
-
-
 @app.route('/cart')
 def cart():
     cart = CartController.get_cart()
@@ -56,7 +52,6 @@ def cart():
     books = {}
     for _id, quan in cart_items.items():
         books.update({_id: {'quantity': quan, 'ebook_obj': EBookController.read(_id)}})
-    print(cart_items)
     return render_template(
         'cart.html',
         cart=books

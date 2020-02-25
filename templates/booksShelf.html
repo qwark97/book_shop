@@ -15,7 +15,9 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(eBookId)
-        }).then(res => console.log(res))
+        })
+        .then(res => console.log(res))
+        .then(() => location.href="cart")
     }
 </script>
 {% endblock %}
@@ -46,6 +48,9 @@
             <button id="{{item.id}}" onclick="addToCard(this.id)" class="btn btn-primary">
                 Add to cart
             </button>
+            <select>
+
+            </select>
           </div>
         </li>
     {% endfor %}
