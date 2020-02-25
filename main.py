@@ -51,10 +51,15 @@ def add_to_cart():
 
 @app.route('/cart')
 def cart():
-    get_cart_items = CartController.get_cart()
+    cart = CartController.get_cart()
+    cart_items = cart.products_list
+    books = {}
+    for _id, quan in cart_items.items():
+        books.update({_id: {'quantity': quan, 'ebook_obj': EBookController.read(_id)}})
+    print(cart_items)
     return render_template(
         'cart.html',
-        cart_items=get_cart_items
+        cart=books
     )
 
 
