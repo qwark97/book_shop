@@ -1,7 +1,24 @@
 {% extends "index.html" %}
 
 {% block title %}All books{% endblock %}
+{% block script %}
+<script type="text/javascript">
+    const addTestBooks = () => {
+        fetch('http://localhost:8080/api/add-books')
+    }
 
+    const addToCard = (eBookId) => {
+        console.log(eBookId)
+        fetch('http://localhost:8080/api/add-to-cart', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eBookId)
+        }).then(res => console.log(res))
+    }
+</script>
+{% endblock %}
 {% block main %}
 <div class="container">
     <ul class="row">
@@ -26,12 +43,13 @@
                 Price: ${{ item.price }}
                 Stock: {{ item.quantity }}
             </p>
-            <button href="#" class="btn btn-primary">
+            <button id="{{item.id}}" onclick="addToCard(this.id)" class="btn btn-primary">
                 Add to cart
             </button>
           </div>
         </li>
     {% endfor %}
     </ul>
+    <button onclick="addTestBooks()">Add test books</button>
 </div>
 {% endblock %}
