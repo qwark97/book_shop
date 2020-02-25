@@ -51,7 +51,11 @@ def books_shelf():
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    get_cart_items = CartController.get_cart()
+    return render_template(
+        'cart.html',
+        cart_items=get_cart_items
+    )
 
 
 @app.route('/test')
