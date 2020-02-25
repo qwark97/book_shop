@@ -1,5 +1,6 @@
 from models.cart import Cart
 from models.ebook import EBook
+from app_facade.ebook_controller import EBookController
 
 
 class CartController:
@@ -32,6 +33,7 @@ class CartController:
             cart.products_list[ebook.id] = num
         else:
             cart.products_list[ebook.id] += num
+        EBookController.decrease_quantity(ebook.id)
 
     @staticmethod
     def put_out(cart, ebook, num=1):
@@ -45,6 +47,7 @@ class CartController:
                 del cart.products_list[ebook.id]
         except KeyError:
             raise Exception("This object is not in cart!")
+        EBookController.increase_quantity(ebook.id)
 
     @staticmethod
     def delete():
